@@ -208,8 +208,8 @@ def main():
             dir_loc = path+catch_name(docker_agent[i].title()) + '_vs_' + catch_name(docker_agent[j].title())
             #dir_loc = path+'try'
             mkdir(dir_loc)
-            #args = arg_set(docker_agent[j],docker_agent[i],dir_loc)
-            args = arg_set(simple_agent,simple_agent,dir_loc)
+            args = arg_set(docker_agent[j],docker_agent[i],dir_loc)
+            #args = arg_set(simple_agent,simple_agent,dir_loc)
             infos = run(args,num_times=3)
             k = 0
             for info in infos:
