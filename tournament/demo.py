@@ -4,13 +4,13 @@ Call this with a config, a game, and a list of agents. The script will start sep
 and then report back the result.
 
 An example with all four test agents running ffa:
-python run_battle.py --agents=test::agents.SimpleAgent,test::agents.SimpleAgent,test::agents.SimpleAgent,test::agents.SimpleAgent --config=PommeFFACompetition-v0
+python demo.py --agents=test::agents.SimpleAgent,test::agents.SimpleAgent,test::agents.SimpleAgent,test::agents.SimpleAgent --config=PommeFFACompetition-v0
 
 An example with one player, two random agents, and one test agent:
-python run_battle.py --agents=player::arrows,test::agents.SimpleAgent,random::null,random::null --config=PommeFFACompetition-v0
+python demo.py --agents=player::arrows,test::agents.SimpleAgent,random::null,random::null --config=PommeFFACompetition-v0
 
 An example with a docker agent:
-python run_battle.py --agents=player::arrows,docker::pommerman/test-agent,random::null,random::null --config=PommeFFACompetition-v0
+python demo.py --agents=player::arrows,docker::pommerman/test-agent,random::null,random::null --config=PommeFFACompetition-v0
 """
 import atexit
 from datetime import datetime
@@ -113,24 +113,16 @@ def run(args, num_times=3, seed=None):
     atexit.register(env.close)
     return infos
 
-
-def main():
-    '''CLI entry pointed used to bootstrap a battle'''
-    num = 3
-    docker_agent = []
-    docker_agent.append('docker::pommerman/simple-agent1')
-    docker_agent.append('docker::multiagentlearning/hakozakijunctions')
-    docker_agent.append( 'docker::multiagentlearning/skynet955')
-
+def arg_set(agent1, agent2,loc):
     parser = argparse.ArgumentParser(description='Playground Flags.')
     parser.add_argument(
         '--config',
-        default='PommeTeamCompetitionFast-v0',
+        default='PommeTeam-v0',
         help='Configuration to execute. See env_ids in '
              'configs.py for options.')
     parser.add_argument(
         '--agents',
-        default=','.join([docker_agent[0]]+[docker_agent[1]]),
+        default=','.join([agent1] + [agent2]),
         # default=','.join([player_agent] + [simple_agent]*3]),
         # default=','.join([docker_agent] + [simple_agent]*3]),
         help='Comma delineated list of agent types and docker '
@@ -150,7 +142,7 @@ def main():
              "Doesn't record if None.")
     parser.add_argument(
         '--record_json_dir',
-        default='../json/',
+        default=loc,
         help='Directory to record the JSON representations of '
              "the game. Doesn't record if None.")
     parser.add_argument(
@@ -171,7 +163,87 @@ def main():
         default=True,
         help="Whether we sleep after each rendering.")
     args = parser.parse_args()
-    run(args)
+    return args
+def mkdir(path):
+    path=path.strip()
+    path=path.rstrip("\\")
+    isExists=os.path.exists(path)
+
+    if not isExists:
+        os.makedirs(path)
+        print(path)
+        return True
+    else:
+        print(path)
+        return False
+
+def catch_name(str):
+    str = str.split("/")
+    return str[-1]
+
+
+
+
+def main():
+    num = 3
+    docker_agent = []
+    docker_agent.append('docker::pommerman/simple-agent1')
+    docker_agent.append('docker::multiagentlearning/hakozakijunctions')
+    docker_agent.append( 'docker::multiagentlearning/skynet955')
+    simple_agent = 'test::agents.SimpleAgent'
+
+
+    lst = []
+
+    for i in range(num):
+        lst.append([])
+        for j in range(num):
+            lst[i].append('-')
+
+    for i in range(num):
+        lst.append([])
+        for j in range(i+1,num):
+
+            path = '/Users/superone77/Downloads/W21:22/KI Praktikum/untitled folder/playground/json/'
+            dir_loc = path+catch_name(docker_agent[i].title()) + '_vs_' + catch_name(docker_agent[j].title())
+            #dir_loc = path+'try'
+            mkdir(dir_loc)
+            #args = arg_set(docker_agent[j],docker_agent[i],dir_loc)
+            args = arg_set(simple_agent,simple_agent,dir_loc)
+            infos = run(args,num_times=3)
+            k = 0
+            for info in infos:
+                if info.__contains__('winners'):
+                    if info['winners'] == [0,2]:
+                        k+=1
+                    elif info['winners'] == [1,3]:
+                        k-=1
+            if k > 0:
+                lst[i][j]=1
+            elif k == 0:
+                lst[i][j]=0
+            else:
+                lst[i][j]=-1
+
+    def save_result(res, filename):
+        filename = filename
+        f = open(filename, 'w+')
+        print('\t', file=f,end='')
+        for i in range(num):
+            print(i,'\t', file=f,end='')
+        print('',file=f)
+        for i in range(num):
+            print(i, '\t', file=f, end='')
+            for j in range(num):
+                print(lst[i][j],'\t',file=f,end='')
+            print('', file=f)
+
+        f.close()
+
+
+
+    save_result(lst,'result.txt')
+
 
 
 if __name__ == "__main__":
