@@ -122,7 +122,7 @@ def arg_set(agent1, agent2,loc):
              'configs.py for options.')
     parser.add_argument(
         '--agents',
-        default=','.join([agent1] + [agent2]),
+        default=','.join([agent1[0]] + [agent2[0]]+[agent1[1]]+[agent2[1]]),
         # default=','.join([player_agent] + [simple_agent]*3]),
         # default=','.join([docker_agent] + [simple_agent]*3]),
         help='Comma delineated list of agent types and docker '
@@ -187,9 +187,12 @@ def catch_name(str):
 def main():
     num = 3
     docker_agent = []
-    docker_agent.append('docker::pommerman/simple-agent1')
-    docker_agent.append('docker::multiagentlearning/hakozakijunctions')
-    docker_agent.append( 'docker::multiagentlearning/skynet955')
+    team1 = ['docker::pommerman/simple-agent','docker::pommerman/simple-agent1']
+    docker_agent.append(team1)
+    team2 = ['docker::multiagentlearning/hakozakijunctions','docker::multiagentlearning/skynet955']
+    docker_agent.append(team2)
+    team3 = ['docker::pommerman/simple-agent2', 'docker::pommerman/simple-agent3']
+    docker_agent.append(team3)
     simple_agent = 'test::agents.SimpleAgent'
 
 
@@ -205,7 +208,7 @@ def main():
         for j in range(i+1,num):
 
             path = '/Users/superone77/Downloads/W21:22/KI Praktikum/untitled folder/playground/json/'
-            dir_loc = path+catch_name(docker_agent[i].title()) + '_vs_' + catch_name(docker_agent[j].title())
+            dir_loc = path+catch_name('team'+str(i) + '_vs_' + 'team'+str(j))
             #dir_loc = path+'try'
             mkdir(dir_loc)
             args = arg_set(docker_agent[j],docker_agent[i],dir_loc)
