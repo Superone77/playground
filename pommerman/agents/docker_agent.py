@@ -139,7 +139,10 @@ class DockerAgent(BaseAgent):
         except requests.exceptions.Timeout as e:
             print('Timeout!')
             # TODO: Fix this. It's ugly.
-            num_actions = len(action_space.shape)
+            try:
+                num_actions = len(action_space.shape)
+            except TypeError:
+                num_actions = 0
             if num_actions > 1:
                 return [0] * num_actions
             else:

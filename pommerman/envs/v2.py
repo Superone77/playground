@@ -107,12 +107,12 @@ class Pomme(v0.Pomme):
 
     def get_json_info(self):
         ret = super().get_json_info()
-        ret['radio_vocab_size'] = json.dumps(
-            self._radio_vocab_size, cls=json_encoder)
-        ret['radio_num_words'] = json.dumps(
-            self._radio_num_words, cls=json_encoder)
-        ret['_radio_from_agent'] = json.dumps(
-            self._radio_from_agent, cls=json_encoder)
+        # ret['radio_vocab_size'] = json.dumps(
+        #     self._radio_vocab_size, cls=json_encoder)
+        # ret['radio_num_words'] = json.dumps(
+        #     self._radio_num_words, cls=json_encoder)
+        # ret['_radio_from_agent'] = json.dumps(
+        #     self._radio_from_agent, cls=json_encoder)
         return ret
 
     def set_json_info(self):
@@ -123,3 +123,4 @@ class Pomme(v0.Pomme):
             self._init_game_state['radio_num_words'])
         self._radio_from_agent = json.loads(
             self._init_game_state['_radio_from_agent'])
+

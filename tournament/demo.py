@@ -117,7 +117,8 @@ def arg_set(agent1, agent2,loc):
     parser = argparse.ArgumentParser(description='Playground Flags.')
     parser.add_argument(
         '--config',
-        default='PommeTeam-v0',
+        # default='PommeTeamCompetitionFast-v0',
+        default='PommeRadioCompetition-v2',
         help='Configuration to execute. See env_ids in '
              'configs.py for options.')
     parser.add_argument(
@@ -213,7 +214,7 @@ def main():
             mkdir(dir_loc)
             args = arg_set(docker_agent[j],docker_agent[i],dir_loc)
             #args = arg_set(simple_agent,simple_agent,dir_loc)
-            infos = run(args,num_times=3)
+            infos = run(args,num_times=1)
             k = 0
             for info in infos:
                 if info.__contains__('winners'):
