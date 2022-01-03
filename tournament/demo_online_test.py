@@ -186,12 +186,12 @@ def catch_name(str):
 
 
 def main():
-    num = 2
+    num = 3
     docker_agent = []
     team1 = ['http::simple-agent:10080','http::simple-agent1:10080']
     docker_agent.append(team1)
-    # team2 = ['docker::multiagentlearning/hakozakijunctions','docker::multiagentlearning/skynet955']
-    # docker_agent.append(team2)
+    team2 = ['docker::multiagentlearning/hakozakijunctions','docker::multiagentlearning/skynet955']
+    docker_agent.append(team2)
     team2 = ['http::simple-agent2:10080', 'http::simple-agent3:10080']
     docker_agent.append(team2)
     simple_agent = 'test::agents.SimpleAgent'
@@ -208,7 +208,7 @@ def main():
         lst.append([])
         for j in range(i+1,num):
 
-            path = '../json'
+            path = '../json/'
             dir_loc = path+catch_name('team'+str(i) + '_vs_' + 'team'+str(j))
             #dir_loc = path+'try'
             mkdir(dir_loc)
