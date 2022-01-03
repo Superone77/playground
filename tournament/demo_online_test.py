@@ -214,7 +214,7 @@ def main():
             mkdir(dir_loc)
             args = arg_set(docker_agent[j],docker_agent[i],dir_loc)
             #args = arg_set(simple_agent,simple_agent,dir_loc)
-            infos = run(args,num_times=1)
+            infos = run(args,num_times=3)
             k = 0
             for info in infos:
                 if info.__contains__('winners'):
