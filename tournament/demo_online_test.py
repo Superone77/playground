@@ -118,7 +118,7 @@ def arg_set(agent1, agent2,loc):
     parser.add_argument(
         '--config',
         # default='PommeTeamCompetitionFast-v0',
-        default='PommeTeamCompetitionFast-v0',
+        default='PommeRadioCompetition-v2',
         help='Configuration to execute. See env_ids in '
              'configs.py for options.')
     parser.add_argument(
