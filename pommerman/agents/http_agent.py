@@ -89,7 +89,7 @@ class HttpAgent(BaseAgent):
         except requests.exceptions.Timeout as e:
             print('Timeout!')
             # TODO: Fix this. It's ugly.
-            if(isinstance(action_space,None)):
+            if(isinstance(action_space,NoneType)):
                 return 0
             num_actions = len(action_space.shape)
             if num_actions > 1:
