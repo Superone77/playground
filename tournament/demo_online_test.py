@@ -188,11 +188,11 @@ def catch_name(str):
 def main():
     num = 2
     docker_agent = []
-    team1 = ['http::172.18.0.4:80','http::172.18.0.3:80']
+    team1 = ['http::simple-agent','http::simple-agent1']
     docker_agent.append(team1)
     # team2 = ['docker::multiagentlearning/hakozakijunctions','docker::multiagentlearning/skynet955']
     # docker_agent.append(team2)
-    team2 = ['http::172.18.0.5:80', 'http::172.18.0.6:80']
+    team2 = ['http::simple-agent2', 'http::simple-agent3']
     docker_agent.append(team2)
     simple_agent = 'test::agents.SimpleAgent'
 
