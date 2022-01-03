@@ -87,7 +87,7 @@ class HttpAgent(BaseAgent):
                 })
             action = req.json()['action']
         except requests.exceptions.Timeout as e:
-            print('Timeout!')
+            print("Timeout - %s:%s" % (self._host, self._port))
             # TODO: Fix this. It's ugly.
             try:
                 num_actions = len(action_space.shape)

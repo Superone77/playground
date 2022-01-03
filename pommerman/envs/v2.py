@@ -133,8 +133,8 @@ class Pomme(v0.Pomme):
             except TypeError:
                 dict={}
                 for key1,value1 in value.items():
-                    key1 = str(key1)
-                    value1 = str(value1)
+                    key1 = key1.value
+                    value1 = value1
                     dict[key1] = value1
                 item = json.dumps(dict)
                 ret['_radio_from_agent']=item
