@@ -190,7 +190,7 @@ def main():
     docker_agent = []
     team1 = ['http::simple-agent:10080','http::simple-agent1:10080']
     docker_agent.append(team1)
-    team2 = ['docker::multiagentlearning/hakozakijunctions','docker::multiagentlearning/skynet955']
+    team2 = ['http::hakozakijunctions:10080','http::skynet955:10080']
     docker_agent.append(team2)
     team2 = ['http::simple-agent2:10080', 'http::simple-agent3:10080']
     docker_agent.append(team2)
