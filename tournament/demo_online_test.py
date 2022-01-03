@@ -27,7 +27,7 @@ from pommerman import make
 from pommerman import utility
 
 
-def crun(args, num_times=3, seed=None):
+def run(args, num_times=3, seed=None):
     '''Wrapper to help start the game'''
     config = args.config
     record_pngs_dir = args.record_pngs_dir
