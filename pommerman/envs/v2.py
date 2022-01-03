@@ -131,7 +131,7 @@ class Pomme(v0.Pomme):
             try:
                 ret[key] = json.dumps(value, cls=utility.PommermanJSONEncoder)
             except TypeError:
-                ret['radio_from_agent']=json.dumps(value, cls=json.JSONEncoder)
+                ret['radio_from_agent']=json.dumps(str(value))
         return ret
 
     def set_json_info(self):
