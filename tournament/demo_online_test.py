@@ -27,7 +27,7 @@ from pommerman import make
 from pommerman import utility
 
 
-def run(args, num_times=3, seed=None):
+def crun(args, num_times=3, seed=None):
     '''Wrapper to help start the game'''
     config = args.config
     record_pngs_dir = args.record_pngs_dir
@@ -118,7 +118,7 @@ def arg_set(agent1, agent2,loc):
     parser.add_argument(
         '--config',
         # default='PommeTeamCompetitionFast-v0',
-        default='PommeRadioCompetition-v2',
+        default='PommeTeamCompetitionFast-v0',
         help='Configuration to execute. See env_ids in '
              'configs.py for options.')
     parser.add_argument(
