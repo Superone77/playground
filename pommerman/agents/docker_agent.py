@@ -34,7 +34,7 @@ class DockerAgent(BaseAgent):
         self._acknowledged = False  # Becomes True when the container is ready.
         self._server = server
         self._port = port
-        self._timeout = 32
+        self._timeout = 100
         self._container = None
         self._env_vars = env_vars or {}
         # Pass env variables starting with DOCKER_AGENT to the container.

@@ -11,6 +11,7 @@ from .. import utility
 from .. import characters
 
 
+
 class HttpAgent(BaseAgent):
     """The HTTP Agent that connects to a port with a remote agent where the
        character runs. It uses the same interface as the docker agent and

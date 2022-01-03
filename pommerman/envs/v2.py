@@ -113,6 +113,22 @@ class Pomme(v0.Pomme):
         #     self._radio_num_words, cls=json_encoder)
         # ret['_radio_from_agent'] = json.dumps(
         #     self._radio_from_agent, cls=json_encoder)
+        """Returns a json snapshot of the current game state."""
+        ret = {
+            'board_size': self._board_size,
+            'step_count': self._step_count,
+            'board': self._board,
+            'agents': self._agents,
+            'bombs': self._bombs,
+            'flames': self._flames,
+            'items': [[k, i] for k, i in self._items.items()],
+            'intended_actions': self._intended_actions,
+            'radio_vocab_size': self._radio_vocab_size,
+            'radio_num_words':self._radio_num_words,
+            '_radio_from_agent':self._radio_from_agent
+        }
+        for key, value in ret.items():
+            ret[key] = json.dumps(value, cls=utility.PommermanJSONEncoder)
         return ret
 
     def set_json_info(self):
