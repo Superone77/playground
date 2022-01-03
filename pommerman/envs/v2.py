@@ -131,7 +131,6 @@ class Pomme(v0.Pomme):
             try:
                 ret[key] = json.dumps(value, cls=utility.PommermanJSONEncoder)
             except TypeError:
-                print(value)
                 dict={}
                 for key1,value1 in value.items():
                     key1 = str(key1)
