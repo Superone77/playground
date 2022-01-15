@@ -190,8 +190,8 @@ def main():
     docker_agent = []
     team_a = ['http::tud22-group-a.1:10080', 'http::tud22-group-a.2:10080']
     docker_agent.append(team_a)
-    team_ab = ['http::tud22-group-ab.1:10080', 'http::tud22-group-ab.2:10080']
-    docker_agent.append(team_ab)
+    team_d = ['http::tud22-group-d.1:10080', 'http::tud22-group-d.2:10080']
+    docker_agent.append(team_d)
     simple_agent = 'test::agents.SimpleAgent'
 
 
