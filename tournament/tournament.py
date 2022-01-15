@@ -192,8 +192,8 @@ def main():
     docker_agent.append(team_a)
     team_ab = ['http::tud22-group-ab.1:10080','http::tud22-group-ab.2:10080']
     docker_agent.append(team_ab)
-    team_ac = ['http::tud22-group-ac.1:10080', 'http::tud22-group-ac.2:10080']
-    docker_agent.append(team_ac)
+    # team_ac = ['http::tud22-group-ac.1:10080', 'http::tud22-group-ac.2:10080']
+    # docker_agent.append(team_ac)
     team_ad = ['http::tud22-group-ad.1:10080', 'http::tud22-group-ad.2:10080']
     docker_agent.append(team_ad)
     team_ae = ['http::tud22-group-ae.1:10080', 'http::tud22-group-ae.2:10080']
@@ -208,6 +208,7 @@ def main():
 
 
     lst = []
+    team_name = ['a','ab','ad','ae','ai','c','d']
 
     for i in range(num):
         lst.append([])
@@ -219,7 +220,7 @@ def main():
         for j in range(i+1,num):
 
             path = '../json/'
-            dir_loc = path+catch_name('team'+str(i) + '_vs_' + 'team'+str(j))
+            dir_loc = path+catch_name('team'+team_name[i] + '_vs_' + 'team'+team_name[j])
             #dir_loc = path+'try'
             mkdir(dir_loc)
             args = arg_set(docker_agent[j],docker_agent[i],dir_loc)

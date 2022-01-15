@@ -188,14 +188,10 @@ def catch_name(str):
 def main():
     num = 2
     docker_agent = []
-    # team1 = ['http::simple-agent:10080','http::simple-agent1:10080']
-    # docker_agent.append(team1)
-    team2 = ['http::hakozakijunctions:10080','http::skynet955:10080']
-    docker_agent.append(team2)
-    # team3 = ['http::simple-agent2:10080', 'http::simple-agent3:10080']
-    # docker_agent.append(team3)
-    team4 = ['http::nips19_1:10080', 'http::nips19_2:10080']
-    docker_agent.append(team4)
+    team_a = ['http::tud22-group-a.1:10080', 'http::tud22-group-a.2:10080']
+    docker_agent.append(team_a)
+    team_ab = ['http::tud22-group-ab.1:10080', 'http::tud22-group-ab.2:10080']
+    docker_agent.append(team_ab)
     simple_agent = 'test::agents.SimpleAgent'
 
 
