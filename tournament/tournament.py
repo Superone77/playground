@@ -186,17 +186,25 @@ def catch_name(str):
 
 
 def main():
-    num = 2
+    num = 8
     docker_agent = []
-    # team1 = ['http::simple-agent:10080','http::simple-agent1:10080']
-    # docker_agent.append(team1)
-    team2 = ['http::hakozakijunctions:10080','http::skynet955:10080']
-    docker_agent.append(team2)
-    # team3 = ['http::simple-agent2:10080', 'http::simple-agent3:10080']
-    # docker_agent.append(team3)
-    team4 = ['http::nips19_1:10080', 'http::nips19_2:10080']
-    docker_agent.append(team4)
-    simple_agent = 'test::agents.SimpleAgent'
+    team_a = ['http::tud22-group-a.1:10080','http::tud22-group-a.2:10080']
+    docker_agent.append(team_a)
+    team_ab = ['http::tud22-group-ab.1:10080','http::tud22-group-ab.2:10080']
+    docker_agent.append(team_ab)
+    team_ac = ['http::tud22-group-ac.1:10080', 'http::tud22-group-ac.2:10080']
+    docker_agent.append(team_ac)
+    team_ad = ['http::tud22-group-ad.1:10080', 'http::tud22-group-ad.2:10080']
+    docker_agent.append(team_ad)
+    team_ae = ['http::tud22-group-ae.1:10080', 'http::tud22-group-ae.2:10080']
+    docker_agent.append(team_ae)
+    team_ai = ['http::tud22-group-ai.1:10080', 'http::tud22-group-ai.2:10080']
+    docker_agent.append(team_ai)
+    team_c = ['http::tud22-group-c.1:10080', 'http::tud22-group-c.2:10080']
+    docker_agent.append(team_c)
+    team_d = ['http::tud22-group-d.1:10080', 'http::tud22-group-d.2:10080']
+    docker_agent.append(team_d)
+    # simple_agent = 'test::agents.SimpleAgent'
 
 
     lst = []
@@ -216,7 +224,7 @@ def main():
             mkdir(dir_loc)
             args = arg_set(docker_agent[j],docker_agent[i],dir_loc)
             #args = arg_set(simple_agent,simple_agent,dir_loc)
-            infos = run(args,num_times=5)
+            infos = run(args,num_times=1)
             k = 0
             for info in infos:
                 if info.__contains__('winners'):
