@@ -32,7 +32,7 @@ class HttpAgent(BaseAgent):
         """Wait for network service to appear. A timeout of 0 waits forever."""
         timeout = self._timeout
         backoff = .25
-        max_backoff = min(timeout, 30)
+        max_backoff = min(timeout, 120)
 
         if timeout:
             # time module is needed to calc timeout shared between two exceptions
