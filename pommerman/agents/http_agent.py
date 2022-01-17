@@ -64,7 +64,7 @@ class HttpAgent(BaseAgent):
         try:
             req = requests.post(
                 request_url,
-                timeout=0.5,
+                timeout=30,
                 json={
                     "id": json.dumps(id, cls=utility.PommermanJSONEncoder),
                     "game_type": json.dumps(game_type, cls=utility.PommermanJSONEncoder)
@@ -78,7 +78,7 @@ class HttpAgent(BaseAgent):
         try:
             req = requests.post(
                 request_url,
-                timeout=0.15,
+                timeout=30,
                 json={
                     "obs":
                     obs_serialized,
