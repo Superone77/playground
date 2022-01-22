@@ -62,6 +62,7 @@ class HttpAgent(BaseAgent):
         super(HttpAgent, self).init_agent(id, game_type)
         request_url = "http://{}:{}/init_agent".format(self._host, self._port)
         try:
+            start = time.time()
             req = requests.post(
                 request_url,
                 timeout=30,
@@ -69,6 +70,8 @@ class HttpAgent(BaseAgent):
                     "id": json.dumps(id, cls=utility.PommermanJSONEncoder),
                     "game_type": json.dumps(game_type, cls=utility.PommermanJSONEncoder)
                 })
+            end = time.time()
+            print("%s Act Time: %f" % (self._host, end - start))
         except requests.exceptions.Timeout as e:
             print('Timeout in init_agent()!')
 
@@ -76,6 +79,7 @@ class HttpAgent(BaseAgent):
         obs_serialized = json.dumps(obs, cls=utility.PommermanJSONEncoder)
         request_url = "http://{}:{}/action".format(self._host, self._port)
         try:
+            start = time.time()
             req = requests.post(
                 request_url,
                 timeout=30,
@@ -86,6 +90,8 @@ class HttpAgent(BaseAgent):
                     json.dumps(action_space, cls=utility.PommermanJSONEncoder)
                 })
             action = req.json()['action']
+            end = time.time()
+            print("%s Act Time: %f" % (self._host, end-start))
         except requests.exceptions.Timeout as e:
             print("Timeout - %s:%s" % (self._host, self._port))
             # TODO: Fix this. It's ugly.
