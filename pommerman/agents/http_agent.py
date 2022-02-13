@@ -79,7 +79,7 @@ class HttpAgent(BaseAgent):
         obs_serialized = json.dumps(obs, cls=utility.PommermanJSONEncoder)
         request_url = "http://{}:{}/action".format(self._host, self._port)
         try:
-            start = time.time()
+            # start = time.time()
             req = requests.post(
                 request_url,
                 timeout=0.12,
@@ -90,8 +90,8 @@ class HttpAgent(BaseAgent):
                     json.dumps(action_space, cls=utility.PommermanJSONEncoder)
                 })
             action = req.json()['action']
-            end = time.time()
-            print("%s Act Time: %f" % (self._host, end-start))
+            # end = time.time()
+            # print("%s Act Time: %f" % (self._host, end-start))
         except requests.exceptions.Timeout as e:
             print("Timeout - %s:%s" % (self._host, self._port))
             # TODO: Fix this. It's ugly.
